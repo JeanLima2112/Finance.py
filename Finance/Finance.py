@@ -1,5 +1,4 @@
 from tkinter import *
-
 def oi():
     oi = ("kkkkkkk, muito gay")
     resp["text"] = oi
@@ -21,4 +20,3 @@ resp= Label(janela, text="",bg="pink", fg="black")
 resp.grid (column=0,row=3, padx=10, pady=10)
 
 janela.mainloop()
-print("teste")
