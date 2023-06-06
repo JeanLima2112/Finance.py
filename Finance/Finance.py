@@ -1,22 +1,34 @@
+import tkinter as tk
 from tkinter import *
-def oi():
-    oi = ("kkkkkkk, muito gay")
-    resp["text"] = oi
+import random
+from tkinter import messagebox
 
-janela = Tk()
-janela.title("TESTE LGBT")
-janela.geometry("300x200")
-janela.config(bg='#DA70D6 ')
-textoincial = Label(janela, text=("Clica no botão se você é gay"), bg="pink", fg="black")
-textoincial.grid (column=0, row=0, padx=10, pady=10)
+root = tk.Tk()
+root.title("Tu é?")
+root.geometry("600x600")
+root.configure(background="pink")
 
-texto2 = Label(janela, text=("Esse botão aqui!"), bg="pink", fg="black")
-texto2.grid (column=0,row=1, padx=10, pady=10)
+def move_button_1(e):
+    if abs(e.x - button_1.winfo_x()) < 50 and abs(e.y - button_1.winfo_y()) < 40:
+        x = random.randint(0, root.winfo_width() - button_1.winfo_width())
+        y = random.randint(0, root.winfo_height() - button_1.winfo_height())
+        button_1.place(x=x, y=y)
 
-botao = Button(janela, text="Vai clicar mesmo?", bg="pink", fg="black",command=oi)
-botao.grid(column=0,row=2, padx=10, pady=10)
+def accepted():
+    messagebox.showinfo("KKKKKK VIADINHO")
 
-resp= Label(janela, text="",bg="pink", fg="black")
-resp.grid (column=0,row=3, padx=10, pady=10)
+def denied():
+    button_1.destroy()
 
-janela.mainloop()
+margin = Canvas(root, width=500, bg="pink", height=100,
+                bd=0, highlightthickness=0, relief='ridge')
+margin.pack()
+text_id = Label(root, bg="pink", text='Você é gay?',fg='#590d22', font=('Montserrat', 24, 'bold'))
+text_id.pack()
+button_1 = tk.Button(root, text="Não", bg="pink", command=denied, relief=RIDGE, bd=3, font=('Montserrat', 8, 'bold'))
+button_1.pack()
+root.bind('<Motion>', move_button_1)
+button_2 = tk.Button(root, text="Sim", bg="pink", relief=RIDGE, bd=3, command=accepted, font=("Montserrat", 14, 'bold'))
+button_2.pack()
+
+root.mainloop()
